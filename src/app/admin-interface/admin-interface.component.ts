@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-interface.component.css']
 })
 export class AdminInterfaceComponent implements OnInit {
+  
+  sidebar= false;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
-
+  sidebartog(){
+    this.sidebar= !this.sidebar;
+  }
 }

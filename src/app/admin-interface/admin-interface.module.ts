@@ -4,19 +4,36 @@ import { AdminInterfaceComponent } from './admin-interface.component'
 import {  RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { StatsInterfaceComponent } from './stats-interface/stats-interface.component';
+import { UsersDashComponent } from './users-dash/users-dash.component';
+import { AngularMatModule } from '../angular-mat/angular-mat.module';
+import { UsersnavComponent } from './users-dash/usersnav/usersnav.component';
+import { UserstableComponent } from './users-dash/userstable/userstable.component';
 
 
 
 @NgModule({
   declarations: [
     AdminInterfaceComponent,
-    StatsInterfaceComponent
+    StatsInterfaceComponent,
+    UsersDashComponent,
+    UsersnavComponent,
+    UserstableComponent
   ],
   imports: [
     CommonModule,
+    AngularMatModule,
     SharedModule,
-    RouterModule.forChild([{path : '', component: AdminInterfaceComponent}
-    ])
+    RouterModule.forRoot([{path : '', component: AdminInterfaceComponent,
+    children: [{
+          path: '', component: StatsInterfaceComponent
+    },{
+      path: 'users' , component: UsersDashComponent,
+      children : [{
+        path: 'table' , component : UserstableComponent,
+      }]
+    }
+  ]
+    }])
   ],
   providers: [],
 })

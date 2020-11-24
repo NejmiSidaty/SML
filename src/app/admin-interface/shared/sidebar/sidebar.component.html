@@ -1,1 +1,17 @@
-<p>sidebar works!</p>
+<mat-nav-list>
+    
+    <h2 matSubheader>Dashboard</h2>
+    <mat-divider></mat-divider>
+    <a mat-list-item [routerLink]="['']">
+        <mat-icon matListIcon >dashboard</mat-icon>dashboard
+    </a>
+    
+</mat-nav-list>
+<mat-nav-list>
+    <h2 matSubheader>Users</h2>
+    <mat-divider></mat-divider>
+    <a mat-list-item [routerLink]="['/users']">
+        <mat-icon matListIcon>table</mat-icon>users table
+    </a>
+    
+</mat-nav-list>

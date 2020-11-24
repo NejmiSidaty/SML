@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminInterfaceModule } from './admin-interface/admin-interface.module';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     AdminInterfaceModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

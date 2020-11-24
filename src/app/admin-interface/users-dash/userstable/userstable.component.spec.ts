@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { UserstableComponent } from './userstable.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('UserstableComponent', () => {
+  let component: UserstableComponent;
+  let fixture: ComponentFixture<UserstableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [ UserstableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(UserstableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

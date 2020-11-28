@@ -1,9 +1,14 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
 mat-toolbar {
     position: sticky;
     position: -webkit-sticky; 
     top: 0; 
+    background-color: #EDF5E1 ;
+    color: #05386B;
     z-index: 1000;
+    justify-content: flex-end;
+}
+.mat-icon-button{
+    text-align: center;
+    border: 1px solid #05386B;
+    border-radius: 50%;
 }

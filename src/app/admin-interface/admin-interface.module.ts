@@ -8,6 +8,7 @@ import { UsersDashComponent } from './users-dash/users-dash.component';
 import { AngularMatModule } from '../angular-mat/angular-mat.module';
 import { UsersnavComponent } from './users-dash/usersnav/usersnav.component';
 import { UserstableComponent } from './users-dash/userstable/userstable.component';
+import { AddUserComponent } from './users-dash/add-user/add-user.component';
 
 
 
@@ -17,7 +18,8 @@ import { UserstableComponent } from './users-dash/userstable/userstable.componen
     StatsInterfaceComponent,
     UsersDashComponent,
     UsersnavComponent,
-    UserstableComponent
+    UserstableComponent,
+    AddUserComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,7 @@ import { UserstableComponent } from './users-dash/userstable/userstable.componen
       path: 'users' , component: UsersDashComponent,
       children : [{
         path: 'table' , component : UserstableComponent,
-      }]
+      }, {path: 'add' , component: AddUserComponent}]
     }
   ]
     }])

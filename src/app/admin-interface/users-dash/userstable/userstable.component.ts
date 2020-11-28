@@ -10,7 +10,7 @@ import { User } from '../../models/user';
   styleUrls: ['./userstable.component.css']
 })
 export class UserstableComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'Full name', 'email', 'language'];
+  displayedColumns: string[] = ['ID', 'Full name', 'email', 'language','delete','edit'];
   users : User[] = [
    {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
    {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},

@@ -1,13 +1,9 @@
 <mat-toolbar>
-    <button mat-icon-button>
-      <mat-icon >add</mat-icon>
-    </button>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+    <button mat-icon-button [routerLink]="['/users/table']">
+        <mat-icon style="font-weight: bold;">list</mat-icon>
+      </button>
+      <mat-divider vertical style="height:30px ; width : 5px ; margin: 0 10px 0 10px; " ></mat-divider>
+    <button mat-icon-button [routerLink]="['/users/add']">
+      <mat-icon style="font-weight: bold;">add</mat-icon>
     </button>
   </mat-toolbar>

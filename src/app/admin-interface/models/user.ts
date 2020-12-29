@@ -4,6 +4,7 @@ export class User {
     fullName : string;
     nativeLanguage : string ;
     nativeLanguageCode : string ;
+    password: string;
     profileImageUrl : string ;
     status : string;
     isbanned : boolean ;

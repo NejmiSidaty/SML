@@ -14,7 +14,7 @@
         <div class="col-md-3 mb-3">
             <label>native Language</label>
             <select formControlName="nativeLanguage" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nativeLanguage.errors }">
-                <option value="English">English</option>
+                <option value="English" >English</option>
                 <option value="Japanese">Japanese</option>
                 <option value="French">French</option>
                 <option value="Arabic">Arabic</option>
@@ -46,12 +46,12 @@
       </div>
       <div class="col-md-3 mb-3">
         <label>Banned</label>
-                     <select formControlName="isBanned" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isBanned.errors }">
+                     <select formControlName="isbanned" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isbanned.errors }">
                          <option value="true">Not Banned</option>
                          <option value="false">Banned</option>
                      </select>
-                     <div *ngIf="submitted && f.isBanned.errors" class="invalid-feedback">
-                         <div *ngIf="f.isBanned.errors.required">Banning status is required</div>
+                     <div *ngIf="submitted && f.isbanned.errors" class="invalid-feedback">
+                         <div *ngIf="f.isbanned.errors.required">Banning status is required</div>
                      </div>
          </div>
         </div> 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MustMatch } from '../../admin-interface.module';
+import { AdminServiceService } from '../../admin-service.service';
 import { User } from '../../models/user';
 
 @Component({
@@ -13,7 +14,7 @@ export class AddUserComponent implements OnInit {
   userForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder , private service  : AdminServiceService) { }
 
   ngOnInit(){
     this.userFormCreation();
@@ -31,7 +32,7 @@ export class AddUserComponent implements OnInit {
      profileImageUrl : ['https://cambodiaict.net/wp-content/uploads/2019/12/computer-icons-user-profile-google-account-photos-icon-account.jpg'],
      password: ['', [Validators.required, Validators.minLength(6)]],
      confirmPassword: ['', Validators.required],
-     isBanned : ['', Validators.required],
+     isbanned : ['', Validators.required],
    }, {
     validator: MustMatch('password', 'confirmPassword')
     });
@@ -47,9 +48,10 @@ export class AddUserComponent implements OnInit {
     if (this.userForm.invalid) {
         console.log('error')
     }
-    console.log('cooool' , this.userForm);
+    // console.log('cooool' , this.userForm);
     // display form values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userForm.value, null, 4));
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userForm.value, null, 4));
+    this.service.addUser(this.userForm.value);
 }
 
 

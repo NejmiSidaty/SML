@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
    @Output() sidebarevent : EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(private authService : AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -17,5 +18,7 @@ export class HeaderComponent implements OnInit {
    this.sidebarevent.emit();
   }
 
-
+logout(){
+  this.authService.signOutUser();
+}
 }

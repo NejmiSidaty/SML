@@ -1,0 +1,13 @@
+.mat-table{
+    width: 100%;
+}
+
+.tableHeader{
+    padding-bottom: 5px;
+    color: #05386B;
+    }
+    .header{
+      padding-bottom: 10px ;
+      border-bottom: 1px solid black ;
+      font-family:Verdana, Geneva, Tahoma, sans-serif ;
+    }

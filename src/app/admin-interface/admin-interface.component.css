@@ -2,6 +2,7 @@
     display: flex ; 
     flex-direction: column;
     height: 100%;
+    
 }
 
 mat-drawer {
@@ -11,6 +12,7 @@ mat-drawer {
 mat-drawer-container{
     height: 100%;
 }
+
 .sidebar{
     background-color: #EDF5E1;
   

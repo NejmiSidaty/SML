@@ -6,3 +6,6 @@ mat-toolbar{
  color: #05386B;
  font-size:medium;
 }
+button{
+  outline: none;
+}

@@ -1,12 +1,83 @@
-<div class="container-fluid">
-    <div class="row" style="background-image:url('../../assets/addUser.svg') ; background-repeat:no-repeat;background-position:right bottom; background-size: 50%;">
-        <div class="col-md-4">
-            <label for="fullName">Full name</label>
-            <input type="text" class="form-control" id="fullName" placeholder = 'full Name' required>
+<div class="container-fluid" style="background-image:url('../../assets/addUser.svg') ; background-repeat:no-repeat;background-position:right bottom; background-size: 40%;">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="row" >
+        <div class="col-md-3 mb-3">
+            <label>Full Name</label>
+                    <input type="text" formControlName="fullName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" />
+            <div *ngIf="submitted && f.fullName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">Full Name is required</div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder = 'john.cena@gmail.com' required>
+        
+    </div>
+    <div class="row" >
+        <div class="col-md-3 mb-3">
+            <label>native Language</label>
+            <select formControlName="nativeLanguage" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nativeLanguage.errors }">
+                <option value="English">English</option>
+                <option value="Japanese">Japanese</option>
+                <option value="French">French</option>
+                <option value="Arabic">Arabic</option>
+            </select>
+            <div *ngIf="submitted && f.nativeLanguage.errors" class="invalid-feedback">
+                <div *ngIf="f.nativeLanguage.errors.required">a language is required</div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <label>Status</label>
+                     <select formControlName="status" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                         <option value="Online">Online</option>
+                         <option value="Offline">Offline</option>
+                         <option value="Occupied">Occupied</option>
+                     </select>
+                     <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                         <div *ngIf="f.status.errors.required">User status is required</div>
+                     </div>
         </div>
     </div>
+    <div class="row" > 
+      <div class="col-md-3 mb-3">
+        <label>Email</label>
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label>Banned</label>
+                     <select formControlName="isBanned" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isBanned.errors }">
+                         <option value="true">Not Banned</option>
+                         <option value="false">Banned</option>
+                     </select>
+                     <div *ngIf="submitted && f.isBanned.errors" class="invalid-feedback">
+                         <div *ngIf="f.isBanned.errors.required">Banning status is required</div>
+                     </div>
+         </div>
+        </div> 
+        <div class="row" > 
+      <div class="col-md-2 mb-3">
+        <label>Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+       </div>
+       <div class="col-md-2 mb-3">
+        <label>Confirm Password</label>
+        <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+        </div>
+       </div>
+
+      </div> 
+      <div class="text-center">
+        <button class="btn btn-primary mr-1">Add user</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+    </div>
+    
+  </form> 
 </div>

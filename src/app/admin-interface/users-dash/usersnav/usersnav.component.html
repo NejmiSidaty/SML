@@ -1,9 +1,13 @@
 <mat-toolbar>
     <button mat-icon-button [routerLink]="['/users/table']">
-        <mat-icon style="font-weight: bold;">list</mat-icon>
+        <mat-icon style="font-weight: bold;">group</mat-icon>
       </button>
       <mat-divider vertical style="height:30px ; width : 5px ; margin: 0 10px 0 10px; " ></mat-divider>
     <button mat-icon-button [routerLink]="['/users/add']">
       <mat-icon style="font-weight: bold;">add</mat-icon>
     </button>
-  </mat-toolbar>
+    <mat-divider vertical style="height:30px ; width : 5px ; margin: 0 10px 0 10px; " ></mat-divider>
+    <button mat-icon-button [routerLink]="['/users/report']">
+      <mat-icon style="font-weight: bold;">block</mat-icon>
+    </button>
+  </mat-toolbar> 

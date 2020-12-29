@@ -1,3 +1,6 @@
 a {
     padding: 10px;
 }
+mat-icon{
+    outline: none;
+}

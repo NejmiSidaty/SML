@@ -1,9 +1,10 @@
 export class User {
-    userId : number;
+    id : number;
     email : string;
     fullName : string;
     nativeLanguage : string ;
+    nativeLanguageCode : string ;
     profileImageUrl : string ;
     status : string;
-    banned : boolean ;
+    isbanned : boolean ;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import { User } from '../../models/user';
+import { AdminServiceService } from '../../admin-service.service';
+
 
 
 @Component({
@@ -10,30 +11,39 @@ import { User } from '../../models/user';
   styleUrls: ['./userstable.component.css']
 })
 export class UserstableComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'Full name', 'email', 'language','delete','edit'];
-  users : User[] = [
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
-   {userId:1 , email: 'jiyedspace@gmail.com' , fullName: 'Jihed Ahmed' , nativeLanguage : 'en' , profileImageUrl : 'test', status:'Online' ,banned: false},
- ] ;
- dataSource = new MatTableDataSource<User>(this.users);
- @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] = ['ID', 'Full name', 'email', 'language','Banned','edit'];
+  users: any[] ;
+  usersLength: number;
 
-  constructor() { }
 
-  ngOnInit() {
-    setTimeout(() => this.dataSource.paginator = this.paginator);
+ @ViewChild(MatPaginator) paginator: MatPaginator; 
+  dataSource : any;
+  constructor(private service : AdminServiceService) { 
+
   }
 
+  ngOnInit() {
+    this.GetUsers();
+  }
+
+  GetUsers(){
+    this.service.getUsers().subscribe(
+      (data : any) =>{
+        console.log(data);
+           this.users = data ;
+           this.usersLength = data.length
+           this.dataSource = new MatTableDataSource<any>(this.users);
+           setTimeout(() => this.dataSource.paginator = this.paginator);
+      },
+      (error) => {
+        alert(error);
+      }
+    )
+  }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

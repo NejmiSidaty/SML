@@ -1,6 +1,7 @@
 # SML
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+cd SML;
+npm i ;
+ng serve --open ;
 
 ## Development server
 

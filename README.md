@@ -1,6 +1,8 @@
 # SML
 cd SML;
+
 npm i ;
+
 ng serve --open ;
 
 ## Development server

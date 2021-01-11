@@ -5,7 +5,7 @@
             <label>Full Name</label>
                     <input type="text" formControlName="fullName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" />
             <div *ngIf="submitted && f.fullName.errors" class="invalid-feedback">
-                <div *ngIf="f.firstName.errors.required">Full Name is required</div>
+                <div *ngIf="f.fullName.errors.required">Full Name is required</div>
             </div>
         </div>
         
@@ -13,11 +13,11 @@
     <div class="row" >
         <div class="col-md-3 mb-3">
             <label>native Language</label>
-            <select formControlName="nativeLanguage" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nativeLanguage.errors }">
-                <option value="English" >English</option>
-                <option value="Japanese">Japanese</option>
-                <option value="French">French</option>
-                <option value="Arabic">Arabic</option>
+            <select (change)="languageCode($event.target.value)" formControlName="nativeLanguage" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nativeLanguage.errors }">
+                <option value="english" >English</option>
+                <option value="japanese">Japanese</option>
+                <option value="french">French</option>
+                <option value="arabic">Arabic</option>
             </select>
             <div *ngIf="submitted && f.nativeLanguage.errors" class="invalid-feedback">
                 <div *ngIf="f.nativeLanguage.errors.required">a language is required</div>
@@ -26,9 +26,9 @@
         <div class="col-md-2 mb-3">
             <label>Status</label>
                      <select formControlName="status" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
-                         <option value="Online">Online</option>
-                         <option value="Offline">Offline</option>
-                         <option value="Occupied">Occupied</option>
+                         <option value="online">Online</option>
+                         <option value="offline">Offline</option>
+                         <option value="occupied">Occupied</option>
                      </select>
                      <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
                          <div *ngIf="f.status.errors.required">User status is required</div>
@@ -46,12 +46,12 @@
       </div>
       <div class="col-md-3 mb-3">
         <label>Banned</label>
-                     <select formControlName="isbanned" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isbanned.errors }">
-                         <option value="true">Not Banned</option>
-                         <option value="false">Banned</option>
+                     <select formControlName="bannedOrNot" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.bannedOrNot.errors }">
+                         <option [ngValue]="false" >Not Banned</option>
+                         <option [ngValue]="true">Banned</option>
                      </select>
-                     <div *ngIf="submitted && f.isbanned.errors" class="invalid-feedback">
-                         <div *ngIf="f.isbanned.errors.required">Banning status is required</div>
+                     <div *ngIf="submitted && f.bannedOrNot.errors" class="invalid-feedback">
+                         <div *ngIf="f.bannedOrNot.errors.required">Banning status is required</div>
                      </div>
          </div>
         </div> 
@@ -76,7 +76,7 @@
       </div> 
       <div class="text-center">
         <button class="btn btn-primary mr-1">Add user</button>
-        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Reset</button>
     </div>
     
   </form> 

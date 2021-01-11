@@ -3,7 +3,7 @@
 </div>
   <mat-form-field>
     <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. name" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. anything" #input>
   </mat-form-field>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
@@ -11,7 +11,7 @@
       
       <ng-container matColumnDef="ID">
         <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{ element.id }}</td>
+        <td mat-cell *matCellDef="let element"> {{ element.userId }}</td>
       </ng-container>
   
       
@@ -28,18 +28,26 @@
    
       <ng-container matColumnDef="language">
         <th mat-header-cell *matHeaderCellDef> language </th>
-        <td mat-cell *matCellDef="let element"> {{element.nativeLanguageCode }} </td>
+        <td mat-cell *matCellDef="let element"> {{element.nativeLanguage }} </td>
       </ng-container>
 
       <ng-container matColumnDef="Banned">
         <th mat-header-cell *matHeaderCellDef> Banned </th>
-        <td mat-cell *matCellDef="let element"> {{element.isBanned }} </td>
+        <td mat-cell *matCellDef="let element">
+          <div  *ngIf="element.bannedOrNot; then thenBlock else elseBlock"></div> 
+          <ng-template #thenBlock><mat-icon class="icon" > not_interested </mat-icon></ng-template>
+          <ng-template #elseBlock></ng-template>
+        </td>
       </ng-container>
-      <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef> Edit </th>
-        <td mat-cell *matCellDef="let element"> <button mat-icon-button>
-            <mat-icon >edit</mat-icon>
-          </button> </td>
+      <ng-container matColumnDef="Ban">
+        <th mat-header-cell *matHeaderCellDef> Ban user </th>
+        <td mat-cell *matCellDef="let element"> 
+          <div  *ngIf="element.bannedOrNot; then thenBlock else elseBlock"></div> 
+          <ng-template #thenBlock><button type="button" mat-icon-button (click)="touch1=!touch1 ; this.idUser = element.userId"><mat-icon class="icon" > report_off </mat-icon></button></ng-template>
+          <ng-template #elseBlock><button type="button" mat-icon-button (click)="touch=!touch ; this.idUser = element.userId">
+            <mat-icon class="icon" >report</mat-icon>
+          </button></ng-template>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -47,5 +55,18 @@
     </table>
   
     <mat-paginator [length]="usersLength"
-    [pageSize]="5" showFirstLastButtons></mat-paginator>
+    [pageSize]="4" showFirstLastButtons></mat-paginator>
+   
+  </div>
+  <div class="blockReq" *ngIf="touch">
+    <div class="BtnGroup d-flex justify-content-between">
+    <button class="btn btn-danger btn-sm" (click)="Banuser();touch=!touch">confirm</button>
+    <button class="btn btn-light btn-sm" (click)="touch=!touch">cancel</button>
+    </div>
+  </div>
+  <div class="blockReq" *ngIf="touch1">
+    <div class="BtnGroup d-flex justify-content-between">
+    <button class="btn btn-danger btn-sm" (click)="unBanuser();touch1=!touch1">confirm</button>
+    <button class="btn btn-light btn-sm" (click)="touch1=!touch1">cancel</button>
+    </div>
   </div>

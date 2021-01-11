@@ -13,9 +13,13 @@ export class ReportPageComponent implements OnInit {
   Reports : Report[] = <any>[] ;  
   users: any[] = [] ;
   Reportlength: number;
-  displayedColumns: string[] = ['Reporter', 'Reason', 'Reported','edit'];
+  displayedColumns: string[] = ['id', 'Reporter', 'Reason', 'Reported','edit'];
   @ViewChild(MatPaginator) paginator: MatPaginator; 
   dataSource : any;
+  touch: false ;
+  idUser : string;
+  ReportKey : string;
+  deleteBtnClicked : false ;
 
   constructor(private service : AdminServiceService) { }
 
@@ -24,11 +28,21 @@ export class ReportPageComponent implements OnInit {
     this.getReports();
   }
 
+
+  deleteReport(){
+    this.service.deleteReport(this.ReportKey).
+    then(()=>{
+      this.deleteBtnClicked = false ;
+      alert('Report removed successfully!');
+    }).catch(err => console.log(err));
+
+  }
+
   getBlockedUser(){
       this.service.getUsers().subscribe(
         (data : any) =>{
              for (let d in data){
-               if (data[d].isBanned){
+               if (data[d].bannedOrNot){
                  this.users.push(data[d]);
                }
              }
@@ -45,9 +59,9 @@ export class ReportPageComponent implements OnInit {
        for (let d in data){
          let report : Report = <any>{};
          report.id = data[d].id;
-         report.reason = data[d].reason;
-         this.service.getuser(data[d].reporterID).subscribe((reporter: any)=>{ report.reporter = reporter[0].fullName});
-         this.service.getuser(data[d].reportedID).subscribe((reported: any)=>{ report.reported = reported[0].fullName});
+         report.reportReason = data[d].reportReason;
+         this.service.getuser(data[d].reporterId).subscribe((reporter: any)=>{ report.reporter = reporter[0].fullName});
+         this.service.getuser(data[d].reportedId).subscribe((reported: any)=>{ report.reported = reported[0].fullName});
          this.Reports.push(report);
 
       }
@@ -64,6 +78,5 @@ export class ReportPageComponent implements OnInit {
 
 
 
-   
 
 }

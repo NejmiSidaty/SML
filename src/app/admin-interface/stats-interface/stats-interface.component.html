@@ -1,3 +1,55 @@
-<mat-drawer-content>
-    
-</mat-drawer-content>
+<div class="container-fluid">
+    <div class="row d-flex justify-content-between nav">
+        <div class="box">
+           
+            <div class="numberHolder">
+               {{this.stats.numberOfUsers}}
+            </div>
+            <div class="header">
+                Users
+             </div>
+        </div>
+        <div class="box">
+            <div class="numberHolder">
+                {{this.stats.numberOfMessages}}
+            </div>
+            <div class="header">
+                Messages
+             </div>
+        </div>
+        <div class="box">
+            
+            <div class="numberHolder">
+                {{this.stats.numberOfReports}}
+            </div>
+            <div class="header">
+                Reports
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 boxdoughnut">
+            <div  class="chart-wrapper">
+                <canvas baseChart
+                height="300vh" width="300vw"
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [colors]="doughnutChartColors"
+                [chartType]="doughnutChartType">
+              </canvas>
+              </div>
+        </div>
+        <div class="col-8">
+            <div class="chart-wrapper">
+                <canvas baseChart 
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [chartType]="barChartType">
+              </canvas>
+            </div>
+        </div>
+    </div>
+   
+</div>

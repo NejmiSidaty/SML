@@ -3,7 +3,11 @@
   </div>
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
-      
+       
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Reporter id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
           
           <ng-container matColumnDef="Reporter">
             <th mat-header-cell *matHeaderCellDef> Reporter </th>
@@ -13,7 +17,7 @@
           
           <ng-container matColumnDef="Reason">
             <th mat-header-cell *matHeaderCellDef> Reason </th>
-            <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.reportReason}} </td>
           </ng-container>
        
           <ng-container matColumnDef="Reported">
@@ -23,9 +27,11 @@
     
         
           <ng-container matColumnDef="edit">
-            <th mat-header-cell *matHeaderCellDef> Edit </th>
-            <td mat-cell *matCellDef="let element"> <button mat-icon-button>
-                <mat-icon >edit</mat-icon>
+            <th mat-header-cell *matHeaderCellDef> Remove </th>
+            <td mat-cell *matCellDef="let element"> <button mat-icon-button 
+              (click)="this.deleteBtnClicked=!deleteBtnClicked;this.ReportKey=element.id">
+                <mat-icon class="icon" *ngIf="!this.deleteBtnClicked">delete</mat-icon>
+                <mat-icon class="iconclear" *ngIf="this.deleteBtnClicked">autorenew</mat-icon>
               </button> </td>
           </ng-container>
     
@@ -35,4 +41,10 @@
       
         <mat-paginator [length]="Reportlength"
         [pageSize]="5" showFirstLastButtons></mat-paginator>
+      </div>
+      <div class="blockReq" *ngIf="this.deleteBtnClicked">
+        <div class="BtnGroup d-flex justify-content-between">
+        <button class="btn btn-danger btn-sm" (click)="this.deleteReport()">confirm</button>
+        <button class="btn btn-light btn-sm" (click)="this.deleteBtnClicked=!deleteBtnClicked">cancel</button>
+        </div>
       </div>

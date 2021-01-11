@@ -17,7 +17,7 @@ export class AuthenticationService {
         (result) =>{
           this.isAuth = true;
           localStorage.setItem('user', JSON.stringify(result.user));
-          resolve();
+          resolve(result);
         },
         (error) => {
           this.isAuth=false;

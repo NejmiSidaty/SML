@@ -11,19 +11,31 @@ import { AdminServiceService } from '../../admin-service.service';
   styleUrls: ['./userstable.component.css']
 })
 export class UserstableComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'Full name', 'email', 'language','Banned','edit'];
+  displayedColumns: string[] = ['ID', 'Full name', 'email', 'language','Banned','Ban'];
   users: any[] ;
   usersLength: number;
+  touch=false;
+  touch1=false;
+  idUser: string ;
 
 
  @ViewChild(MatPaginator) paginator: MatPaginator; 
   dataSource : any;
+
+  
   constructor(private service : AdminServiceService) { 
 
   }
 
   ngOnInit() {
     this.GetUsers();
+  }
+
+  Banuser(){
+    this.service.banUser(this.idUser);
+  }
+  unBanuser(){
+    this.service.unbanUser(this.idUser);
   }
 
   GetUsers(){

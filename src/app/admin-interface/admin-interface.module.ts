@@ -14,6 +14,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
 import { AdminServiceService } from './admin-service.service';
 import { ReportPageComponent } from './users-dash/report-page/report-page.component';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -48,8 +49,9 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     CommonModule,
     AngularMatModule,
     ReactiveFormsModule,
+    ChartsModule,
     SharedModule,
-    RouterModule.forRoot([{path : '', /*canActivate:[AuthGuard] , */  component: AdminInterfaceComponent,
+    RouterModule.forRoot([{path : '', /*canActivate:[AuthGuard] */ component: AdminInterfaceComponent,
     children: [{
           path: '', component: StatsInterfaceComponent
     },{

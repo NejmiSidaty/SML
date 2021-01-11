@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { MustMatch } from '../../admin-interface.module';
 import { AdminServiceService } from '../../admin-service.service';
 import { User } from '../../models/user';
@@ -10,6 +10,7 @@ import { User } from '../../models/user';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
+  selected : String ;
   user : User ;
   userForm: FormGroup;
   submitted = false;
@@ -20,22 +21,39 @@ export class AddUserComponent implements OnInit {
     this.userFormCreation();
   }
 
-
+  languageCode(val : string){
+    switch (val) {
+      case "english":
+        this.selected = "en";
+          break;
+      case "japanese":
+        this.selected = "ja";
+          break;
+      case "french":
+        this.selected = "fr";
+          break;
+      case "arabic":
+        this.selected = "ar";
+          break;   
+        }
+        
+  }
  userFormCreation(){
    this.userForm =  this.formBuilder.group({
-     id :  ['', Validators.required],
+     userId :  ['', Validators.required],
      email: ['', [Validators.required, Validators.email]],
      fullName : ['', Validators.required],
      nativeLanguage : ['', Validators.required],
-     nativeLanguageCode  : ['', Validators.required],
+     nativeLanguageCode :  [''],
      status : ['', Validators.required],
-     profileImageUrl : ['https://cambodiaict.net/wp-content/uploads/2019/12/computer-icons-user-profile-google-account-photos-icon-account.jpg'],
+     imageUrl : ['https://cambodiaict.net/wp-content/uploads/2019/12/computer-icons-user-profile-google-account-photos-icon-account.jpg'],
      password: ['', [Validators.required, Validators.minLength(6)]],
      confirmPassword: ['', Validators.required],
-     isbanned : ['', Validators.required],
+     bannedOrNot : ['', Validators.required],
    }, {
     validator: MustMatch('password', 'confirmPassword')
     });
+       
  }
 
  
@@ -43,15 +61,12 @@ export class AddUserComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
-    // stop here if form is invalid
     if (this.userForm.invalid) {
         console.log('error')
     }
-    // console.log('cooool' , this.userForm);
-    // display form values on success
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.userForm.value, null, 4));
+    this.userForm.get('nativeLanguageCode').patchValue(this.selected);
     this.service.addUser(this.userForm.value);
+    console.log(this.userForm.value);
 }
 
 

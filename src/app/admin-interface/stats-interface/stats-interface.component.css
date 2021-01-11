@@ -1,7 +1,37 @@
-mat-drawer-content{
-    padding: 20px;
-    background-image: url('../../../assets/stats.svg');
-    background-size: 20%;
-    background-position: center;
-    background-repeat: no-repeat;
+.row{
+    padding: 20px 60px 20px 60px;
+    
+}
+.nav{
+    border-bottom: 2px solid #003f5c;
+    background-color: #EDF5E1 ;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.numberHolder{
+    background-color: #003f5c;
+    width: 50px;
+    line-height: 50px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 28px;
+    color: white ;
+}
+.header{
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 3em;
+    letter-spacing: -2px;
+    color:   #003f5c;
+    margin-bottom: 10px;
+}
+.boxdoughnut{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
